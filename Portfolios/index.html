@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teckey Williams - Cybersecurity Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<style>
+    :root {
+        --primary-color: #00ff00;
+        --secondary-color: #1a1a1a;
+        --text-color: #ffffff;
+        --accent-color: #32CD32;
+        --dark-bg: #0a0a0a;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Courier New', monospace;
+    }
+
+    body {
+        background-color: var(--dark-bg);
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    nav {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 5%;
+        background-color: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--primary-color);
+        z-index: 1000;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+
+    nav ul {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+    }
+
+    nav ul a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 1rem;
+        transition: color 0.3s;
+    }
+
+    nav ul a:hover {
+        color: var(--primary-color);
+    }
+
+    .hero-section {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 0 5%;
+        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b') center/cover;
+    }
+
+    .hero-content {
+        max-width: 800px;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: var(--primary-color);
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        color: var(--text-color);
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background-color: var(--primary-color);
+        color: var(--dark-bg);
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: transform 0.3s;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+    }
+
+    .sections-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 5rem 5%;
+    }
+
+    .section-card {
+        background: var(--secondary-color);
+        padding: 2rem;
+        border-radius: 10px;
+        border: 1px solid var(--primary-color);
+    }
+
+    .section-card h2 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .skill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .skill-tag {
+        background: var(--primary-color);
+        color: var(--dark-bg);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+    }
+
+    .terminal-section {
+        background: var(--secondary-color);
+        padding: 2rem;
+        border-radius: 10px;
+        margin: 2rem 5%;
+        font-family: 'Courier New', monospace;
+    }
+
+    .terminal-header {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .terminal-text {
+        color: var(--primary-color);
+    }
+
+    @media (max-width: 768px) {
+        nav {
+            flex-direction: column;
+            padding: 1rem;
+        }
+
+        nav ul {
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-title {
+            font-size: 2rem;
+        }
+    }
+</style>
+<body>
+    <!-- Matrix Rain Canvas -->
+    <canvas id="matrix-rain"></canvas>
+    
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-left">
+            <a href="#" class="logo">
+                <i class="fas fa-terminal"></i>
+                <span class="logo-text">[HackeySpy~]$</span>
+                <span class="terminal-cursor">█</span>
+            </a>
+        </div>
+        <div class="nav-center">
+            <ul class="nav-links">
+                <li><a href="#search-lab" class="nav-link"><i class="fas fa-search"></i> Search Lab</a></li>
+                <li><a href="#resources" class="nav-link"><i class="fas fa-book"></i> Resources</a></li>
+                <li><a href="#books" class="nav-link"><i class="fas fa-book-reader"></i> Books</a></li>
+                <li><a href="#games" class="nav-link"><i class="fas fa-gamepad"></i> Games</a></li>
+                <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Teckey Williams</h1>
+            <p class="hero-subtitle"></p>
+            <a href="#contact" class="cta-button">Get In Touch <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Search Lab Section -->
+    <section id="search-lab" class="section">
+        <div class="section-container">
+            <h2><i class="fas fa-search"></i> Search Lab</h2>
+            <div class="search-lab-content">
+                <div class="search-category">
+                    <h3><i class="fas fa-shield-alt"></i> Security Search Engines</h3>
+                    <div class="search-tools-grid">
+                        <a href="https://www.shodan.io" target="_blank" class="search-tool-card">
+                            <i class="fas fa-globe"></i>
+                            <h4>Shodan</h4>
+                            <p>Internet of Things Search Engine</p>
+                        </a>
+                        <a href="https://censys.io" target="_blank" class="search-tool-card">
+                            <i class="fas fa-search-plus"></i>
+                            <h4>Censys</h4>
+                            <p>Internet Asset Discovery</p>
+                        </a>
+                        <a href="https://www.zoomeye.org" target="_blank" class="search-tool-card">
+                            <i class="fas fa-eye"></i>
+                            <h4>ZoomEye</h4>
+                            <p>Cyberspace Search Engine</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="search-category">
+                    <h3><i class="fas fa-robot"></i> AI-Powered Tools</h3>
+                    <div class="search-tools-grid">
+                        <a href="https://chat.openai.com" target="_blank" class="search-tool-card">
+                            <i class="fas fa-comment-dots"></i>
+                            <h4>ChatGPT</h4>
+                            <p>AI Assistant for Security Research</p>
+                        </a>
+                        <a href="https://www.perplexity.ai" target="_blank" class="search-tool-card">
+                            <i class="fas fa-brain"></i>
+                            <h4>Perplexity AI</h4>
+                            <p>AI-Powered Research Assistant</p>
+                        </a>
+                        <a href="https://www.anthropic.com/claude" target="_blank" class="search-tool-card">
+                            <i class="fas fa-robot"></i>
+                            <h4>Claude</h4>
+                            <p>Advanced AI Security Assistant</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="search-category">
+                    <h3><i class="fas fa-database"></i> Security Databases</h3>
+                    <div class="search-tools-grid">
+                        <a href="https://nvd.nist.gov" target="_blank" class="search-tool-card">
+                            <i class="fas fa-database"></i>
+                            <h4>NVD</h4>
+                            <p>National Vulnerability Database</p>
+                        </a>
+                        <a href="https://www.exploit-db.com" target="_blank" class="search-tool-card">
+                            <i class="fas fa-bug"></i>
+                            <h4>Exploit-DB</h4>
+                            <p>Exploit Database</p>
+                        </a>
+                        <a href="https://www.securityfocus.com" target="_blank" class="search-tool-card">
+                            <i class="fas fa-shield-virus"></i>
+                            <h4>SecurityFocus</h4>
+                            <p>Security Vulnerability Database</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="search-category">
+                    <h3><i class="fas fa-tools"></i> Security Tools</h3>
+                    <div class="search-tools-grid">
+                        <a href="https://www.kali.org/tools" target="_blank" class="search-tool-card">
+                            <i class="fas fa-tools"></i>
+                            <h4>Kali Tools</h4>
+                            <p>Penetration Testing Tools</p>
+                        </a>
+                        <a href="https://www.metasploit.com" target="_blank" class="search-tool-card">
+                            <i class="fas fa-bomb"></i>
+                            <h4>Metasploit</h4>
+                            <p>Penetration Testing Framework</p>
+                        </a>
+                        <a href="https://www.wireshark.org" target="_blank" class="search-tool-card">
+                            <i class="fas fa-network-wired"></i>
+                            <h4>Wireshark</h4>
+                            <p>Network Protocol Analyzer</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Resources Section -->
+    <section id="resources" class="section">
+        <div class="section-container">
+            <h2><i class="fas fa-book"></i> Free Learning Resources</h2>
+            <div class="resources-grid">
+                <div class="resource-category">
+                    <h3><i class="fas fa-graduation-cap"></i> Free Online Courses</h3>
+                    <div class="resource-list">
+                        <a href="https://www.cybrary.it" target="_blank" class="resource-card">
+                            <i class="fas fa-video"></i>
+                            <h4>Cybrary</h4>
+                            <p>Free Cybersecurity Training & Courses</p>
+                        </a>
+                        <a href="https://www.pentesterlab.com" target="_blank" class="resource-card">
+                            <i class="fas fa-flask"></i>
+                            <h4>PentesterLab</h4>
+                            <p>Free Web Security Training</p>
+                        </a>
+                        <a href="https://www.root-me.org" target="_blank" class="resource-card">
+                            <i class="fas fa-user-ninja"></i>
+                            <h4>Root-Me</h4>
+                            <p>Free Security Training Platform</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-category">
+                    <h3><i class="fas fa-laptop-code"></i> Free Practice Platforms</h3>
+                    <div class="resource-list">
+                        <a href="https://www.vulnhub.com" target="_blank" class="resource-card">
+                            <i class="fas fa-virus"></i>
+                            <h4>VulnHub</h4>
+                            <p>Free Vulnerable Machines</p>
+                        </a>
+                        <a href="https://tryhackme.com" target="_blank" class="resource-card">
+                            <i class="fas fa-gamepad"></i>
+                            <h4>TryHackMe</h4>
+                            <p>Free Rooms & Learning Paths</p>
+                        </a>
+                        <a href="https://www.hackthebox.com" target="_blank" class="resource-card">
+                            <i class="fas fa-box"></i>
+                            <h4>HackTheBox</h4>
+                            <p>Free Machines & Challenges</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-category">
+                    <h3><i class="fas fa-tools"></i> Free Security Tools</h3>
+                    <div class="resource-list">
+                        <a href="https://www.kali.org/tools" target="_blank" class="resource-card">
+                            <i class="fas fa-tools"></i>
+                            <h4>Kali Tools</h4>
+                            <p>Free Penetration Testing Tools</p>
+                        </a>
+                        <a href="https://www.wireshark.org" target="_blank" class="resource-card">
+                            <i class="fas fa-network-wired"></i>
+                            <h4>Wireshark</h4>
+                            <p>Free Network Protocol Analyzer</p>
+                        </a>
+                        <a href="https://www.nmap.org" target="_blank" class="resource-card">
+                            <i class="fas fa-search"></i>
+                            <h4>Nmap</h4>
+                            <p>Free Network Scanner</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-category">
+                    <h3><i class="fas fa-book-reader"></i> Free Study Materials</h3>
+                    <div class="resource-list">
+                        <a href="https://www.owasp.org/www-project-web-security-testing-guide/" target="_blank" class="resource-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>OWASP WSTG</h4>
+                            <p>Free Web Security Testing Guide</p>
+                        </a>
+                        <a href="https://www.hackthebox.com/blog" target="_blank" class="resource-card">
+                            <i class="fas fa-newspaper"></i>
+                            <h4>HackTheBox Blog</h4>
+                            <p>Free Security Articles & Writeups</p>
+                        </a>
+                        <a href="https://www.exploit-db.com" target="_blank" class="resource-card">
+                            <i class="fas fa-bug"></i>
+                            <h4>Exploit-DB</h4>
+                            <p>Free Exploit Database</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books Section -->
+    <section id="books" class="section">
+        <div class="section-container">
+            <h2><i class="fas fa-book"></i> Top 20 Cybersecurity Books</h2>
+            <div class="books-grid">
+                <div class="book-category">
+                    <h3><i class="fas fa-user-secret"></i> Penetration Testing</h3>
+                    <div class="book-list">
+                        <a href="https://www.amazon.com/Practical-Malware-Analysis-Hands-Dissecting/dp/1593272901" target="_blank" class="book-card">
+                            <i class="fas fa-bug"></i>
+                            <h4>Practical Malware Analysis</h4>
+                            <p>By Michael Sikorski & Andrew Honig</p>
+                        </a>
+                        <a href="https://www.amazon.com/Hacking-Art-Exploitation-Jon-Erickson/dp/1593271441" target="_blank" class="book-card">
+                            <i class="fas fa-code"></i>
+                            <h4>Hacking: The Art of Exploitation</h4>
+                            <p>By Jon Erickson</p>
+                        </a>
+                        <a href="https://www.amazon.com/Web-Application-Hackers-Handbook-Exploiting/dp/1118026470" target="_blank" class="book-card">
+                            <i class="fas fa-globe"></i>
+                            <h4>The Web Application Hacker's Handbook</h4>
+                            <p>By Dafydd Stuttard & Marcus Pinto</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-category">
+                    <h3><i class="fas fa-shield-alt"></i> Network Security</h3>
+                    <div class="book-list">
+                        <a href="https://www.amazon.com/Network-Security-Essentials-Applications-Standards/dp/013337043X" target="_blank" class="book-card">
+                            <i class="fas fa-network-wired"></i>
+                            <h4>Network Security Essentials</h4>
+                            <p>By William Stallings</p>
+                        </a>
+                        <a href="https://www.amazon.com/Network-Security-Hackers-Handbook-Exploiting/dp/1118380935" target="_blank" class="book-card">
+                            <i class="fas fa-laptop-code"></i>
+                            <h4>Network Security Hacker's Handbook</h4>
+                            <p>By Allen Harper & Ryan Linn</p>
+                        </a>
+                        <a href="https://www.amazon.com/Network-Protocol-Handbook-Matthew-Nauman/dp/0071492582" target="_blank" class="book-card">
+                            <i class="fas fa-project-diagram"></i>
+                            <h4>Network Protocol Handbook</h4>
+                            <p>By Matthew Nauman</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-category">
+                    <h3><i class="fas fa-user-shield"></i> Cryptography</h3>
+                    <div class="book-list">
+                        <a href="https://www.amazon.com/Applied-Cryptography-Protocols-Algorithms-Source/dp/0471117099" target="_blank" class="book-card">
+                            <i class="fas fa-lock"></i>
+                            <h4>Applied Cryptography</h4>
+                            <p>By Bruce Schneier</p>
+                        </a>
+                        <a href="https://www.amazon.com/Cryptography-Engineering-Principles-Practical-Applications/dp/0470474246" target="_blank" class="book-card">
+                            <i class="fas fa-key"></i>
+                            <h4>Cryptography Engineering</h4>
+                            <p>By Niels Ferguson, Bruce Schneier, Tadayoshi Kohno</p>
+                        </a>
+                        <a href="https://www.amazon.com/Understanding-Cryptography-Textbook-Students-Practitioners/dp/3642041000" target="_blank" class="book-card">
+                            <i class="fas fa-unlock"></i>
+                            <h4>Understanding Cryptography</h4>
+                            <p>By Christof Paar & Jan Pelzl</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-category">
+                    <h3><i class="fas fa-virus"></i> Malware & Reverse Engineering</h3>
+                    <div class="book-list">
+                        <a href="https://www.amazon.com/Practical-Reverse-Engineering-Reversing-Engineering/dp/1118787315" target="_blank" class="book-card">
+                            <i class="fas fa-code-branch"></i>
+                            <h4>Practical Reverse Engineering</h4>
+                            <p>By Bruce Dang, Alexandre Gazet, Elias Bachaalany</p>
+                        </a>
+                        <a href="https://www.amazon.com/Practical-Malware-Analysis-Hands-Dissecting/dp/1593272901" target="_blank" class="book-card">
+                            <i class="fas fa-bug"></i>
+                            <h4>Practical Malware Analysis</h4>
+                            <p>By Michael Sikorski & Andrew Honig</p>
+                        </a>
+                        <a href="https://www.amazon.com/Reversing-Secrets-Engineering-Eldad-Eilam/dp/0764574817" target="_blank" class="book-card">
+                            <i class="fas fa-search"></i>
+                            <h4>Reversing: Secrets of Reverse Engineering</h4>
+                            <p>By Eldad Eilam</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-category">
+                    <h3><i class="fas fa-shield-virus"></i> Incident Response & Forensics</h3>
+                    <div class="book-list">
+                        <a href="https://www.amazon.com/Incident-Response-Handbook-Computer-Security/dp/0071786551" target="_blank" class="book-card">
+                            <i class="fas fa-search-plus"></i>
+                            <h4>Incident Response & Computer Forensics</h4>
+                            <p>By Jason T. Luttgens, Matthew Pepe, Kevin Mandia</p>
+                        </a>
+                        <a href="https://www.amazon.com/File-System-Forensic-Analysis-Brian-Carrier/dp/0321268172" target="_blank" class="book-card">
+                            <i class="fas fa-file-alt"></i>
+                            <h4>File System Forensic Analysis</h4>
+                            <p>By Brian Carrier</p>
+                        </a>
+                        <a href="https://www.amazon.com/Digital-Forensics-Open-Source-Tools/dp/1597495867" target="_blank" class="book-card">
+                            <i class="fas fa-tools"></i>
+                            <h4>Digital Forensics with Open Source Tools</h4>
+                            <p>By Cory Altheide & Harlan Carvey</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="book-category">
+                    <h3><i class="fas fa-user-lock"></i> Social Engineering & Human Security</h3>
+                    <div class="book-list">
+                        <a href="https://www.amazon.com/Art-Deception-Controlling-Human-Security/dp/0471678565" target="_blank" class="book-card">
+                            <i class="fas fa-user-secret"></i>
+                            <h4>The Art of Deception</h4>
+                            <p>By Kevin Mitnick</p>
+                        </a>
+                        <a href="https://www.amazon.com/Art-Intrusion-Hackers-Real-World-Exploits/dp/0471782661" target="_blank" class="book-card">
+                            <i class="fas fa-user-ninja"></i>
+                            <h4>The Art of Intrusion</h4>
+                            <p>By Kevin Mitnick & William L. Simon</p>
+                        </a>
+                        <a href="https://www.amazon.com/No-Tech-Hacking-Guide-Social-Engineering/dp/1597492159" target="_blank" class="book-card">
+                            <i class="fas fa-users"></i>
+                            <h4>No Tech Hacking</h4>
+                            <p>By Johnny Long & Jack Wiles</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section id="games" class="section">
+        <div class="section-container">
+            <h2><i class="fas fa-gamepad"></i> Interactive Cybersecurity Games</h2>
+            <div class="games-grid">
+                <div class="game-category">
+                    <h3><i class="fas fa-binary"></i> Binary Game</h3>
+                    <div class="game-list">
+                        <div class="game-card">
+                            <i class="fas fa-binary"></i>
+                            <h4>Binary Game</h4>
+                            <p>Learn binary numbers through an interactive game</p>
+                            <a href="https://games.penjee.com/binary-numbers-game/" target="_blank" class="play-button">Play Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-category">
+                    <h3><i class="fas fa-question-circle"></i> Cybersecurity Quizzes</h3>
+                    <div class="game-list">
+                        <div class="game-card">
+                            <i class="fas fa-lock"></i>
+                            <h4>Cybersecurity Fundamentals Quiz</h4>
+                            <p>Test your knowledge of basic cybersecurity concepts</p>
+                            <div id="fundamentals-quiz" class="quiz-container"></div>
+                        </div>
+                        <div class="game-card">
+                            <i class="fas fa-network-wired"></i>
+                            <h4>Network Security Quiz</h4>
+                            <p>Challenge your network security knowledge</p>
+                            <div id="network-quiz" class="quiz-container"></div>
+                        </div>
+                        <div class="game-card">
+                            <i class="fas fa-key"></i>
+                            <h4>Cryptography Quiz</h4>
+                            <p>Test your understanding of cryptography</p>
+                            <div id="cryptography-quiz" class="quiz-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terminal Section -->
+    <section class="terminal-section">
+        <h3 class="terminal-header"><i class="fas fa-terminal"></i> Recent Activity</h3>
+        <div class="terminal-text">
+            <p>$ Last CTF Competition: [Achievement details]</p>
+            <p>$ Latest Research: [Research topic]</p>
+            <p>$ Current Project: [Project name]</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="section-container">
+            <h2><i class="fas fa-envelope"></i> Get In Touch</h2>
+            <div class="contact-content">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send Message <i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+            </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-text">
+                <p> 2025 Teckey Williams. All rights reserved.</p>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/kawilliams0" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/williams-ka-639b5b1b1" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/2_williams_5?igsh=aDQzM3R4bzF4MWF" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/@hackeyspy2653?feature=shared" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="quiz.js"></script>
+</body>
+</html>
